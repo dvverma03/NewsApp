@@ -39,7 +39,7 @@ export default function LoginScreen() {
     }
   }
 
-  if(creating) return <LoadingOverlay/>
+  if(creating) return <LoadingOverlay message="Login you..."/>
 
   return (
     <LinearGradient colors={["#90aff7", "#f48ae2"]} style={styles.gradient}>

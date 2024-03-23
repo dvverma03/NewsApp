@@ -50,7 +50,7 @@ import {
       }
     }
   
-    if(creating) return <LoadingOverlay/>
+    if(creating) return <LoadingOverlay message="Sign in you"/>
   
     return (
       <LinearGradient colors={["#90aff7", "#f48ae2"]} style={styles.gradient}>

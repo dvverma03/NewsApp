@@ -2,6 +2,7 @@ import { ScrollView, StyleSheet, Text, View, Image, Pressable, Linking } from 'r
 import React from 'react'
 import { GestureHandlerRootView } from 'react-native-gesture-handler'
 import { useNavigation } from '@react-navigation/native'
+import LoadingOverlay from '../components/LoadingOverLay';
 
 export default function DetailsScreen(props) {
   const Article = props.route.params.article;
@@ -15,12 +16,12 @@ export default function DetailsScreen(props) {
     <GestureHandlerRootView>
       <ScrollView>
         <View style={styles.MainContainer}>
-          <Image
-            style={styles.MainImage}
-            source={{
-              uri: Article.urlToImage
-            }}
-          />
+          {Article.urlToImage ? <Image
+          style={styles.MainImage}
+          source={{
+            uri: Article.urlToImage,
+          }}
+        />: <LoadingOverlay  />}
           <Text style={styles.MainNewText}>{Article.source.name}</Text>
           <Text style={styles.MainNewAuthor}> {Article.author}</Text>
           <Text style={styles.MainNewDate}> Published Date: {Article.publishedAt.slice(0, 10)}</Text>

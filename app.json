@@ -17,7 +17,6 @@
     "ios": {
       "buildNumber": "1.0.0",
       "supportsTablet": true,
-      "bundleIdentifier": "com.dvverma03.newApp"
     },
     "android": {
       "versionCode": 1,

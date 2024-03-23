@@ -3,6 +3,7 @@ import React, { useEffect, useState } from "react";
 import Slider from "../components/Slider";
 import { GestureHandlerRootView, ScrollView } from "react-native-gesture-handler";
 import { useNavigation } from "@react-navigation/native";
+import LoadingOverlay from "../components/LoadingOverLay";
 
 export default function HomeScreen() {
   const [category, setCategory] = useState("technology");
@@ -28,7 +29,7 @@ export default function HomeScreen() {
       fetchData();
   }, [category]);
 
-  if(Articles===null) return <Text>Loading</Text>
+  if(Articles===null) return <LoadingOverlay message="Loading"/>
 
   return (
     <GestureHandlerRootView>
@@ -37,12 +38,12 @@ export default function HomeScreen() {
         <Slider CategoryFind={CategoryFind} />
       </View>
       <View style={styles.MainContainer}>
-        <Image
+        {Articles[0].urlToImage ? <Image
           style={styles.MainImage}
           source={{
             uri: Articles[0].urlToImage,
           }}
-        />
+        />: <LoadingOverlay  />}
         <Text style={styles.MainNewText}>{Articles[0].source.name}</Text>
         <Text style={styles.MainNewAuthor}>{Articles[0].author}</Text>
         <Text style={styles.MainNewTitle}>{Articles[0].title}</Text>
@@ -61,7 +62,7 @@ export default function HomeScreen() {
                 <Text style={{marginTop:8, fontWeight:'bold'}}>{e.author}</Text>
               </View>
               <View style={styles.NewsTitlesImage}>
-                <Image style={styles.Image} source={{ uri: e.urlToImage }} />
+                {e.urlToImage ? <Image style={styles.Image} source={{ uri: e.urlToImage }} />: <LoadingOverlay/>}
               </View>
             </View>
             </Pressable>
